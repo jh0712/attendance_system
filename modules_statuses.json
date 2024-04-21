@@ -1,0 +1,14 @@
+{
+    "Khtools": true,
+    "Kh": true,
+    "Country": true,
+    "Stock": true,
+    "TradingData": true,
+    "Company": true,
+    "Authentication": true,
+    "Erd": true,
+    "Erdmodule": true,
+    "Dashboard": true,
+    "Translation": true,
+    "QuiryBuilder" : true
+}

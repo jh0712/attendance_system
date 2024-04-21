@@ -1,0 +1,25 @@
+{
+    "name": "nwidart/quirybuilder",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\QuiryBuilder\\Providers\\QuiryBuilderServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\QuiryBuilder\\": ""
+        }
+    }
+}

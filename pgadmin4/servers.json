@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Attendance System",
+      "Group": "Servers",
+      "Port": 5432,
+      "Username": "root",
+      "Host": "db",
+      "SSLMode": "prefer",
+      "MaintenanceDB": "attendance_system"
+    }
+  }
+}

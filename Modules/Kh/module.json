@@ -1,0 +1,13 @@
+{
+    "name": "Kh",
+    "alias": "kh",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Kh\\Providers\\KhServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -1,0 +1,14 @@
+{
+    "name": "QuiryBuilder",
+    "alias": "quirybuilder",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\QuiryBuilder\\Providers\\QuiryBuilderServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

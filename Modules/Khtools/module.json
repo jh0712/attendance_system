@@ -1,0 +1,13 @@
+{
+    "name": "Khtools",
+    "alias": "khtools",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Khtools\\Providers\\KhtoolsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

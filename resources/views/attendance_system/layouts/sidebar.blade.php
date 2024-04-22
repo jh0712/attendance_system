@@ -12,10 +12,12 @@
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-primary badge-pill float-right">2</span> <span> Dashboard </span>
                                 </a>
                             </li>
-                            <li class="menu-title">Analysis Stock</li>
+                            <li class="menu-title">System</li>
                             <li>
-                                <a href="tradingdata/" class="waves-effect">
-                                    <i class="mdi mdi-format-list-bulleted-type"></i><span class="badge badge-primary badge-pill float-right"></span> <span> Staff Level </span>
+                                <a href="/member" class="waves-effect">
+                                    <i class="mdi mdi-format-list-bulleted-type"></i>
+                                    <span class="badge badge-primary badge-pill float-right"></span>
+                                    <span> 學員清單 </span>
                                 </a>
                             </li>
 

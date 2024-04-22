@@ -6,14 +6,29 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Member\Contracts\MemberContract;
+use Modules\Member\Entities\Member;
+use Modules\Member\Repositories\MemberRepository;
 
 class MemberController extends Controller
 {
+    public function __construct(
+        public MemberContract $memberRepo
+    )
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $members = Member::paginate(15);
+        return view('member::index',compact('members'));
+    }
+    public function list()
+    {
+        $this->memberRepo->all();
         return view('member::index');
     }
 

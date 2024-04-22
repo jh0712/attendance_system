@@ -17,3 +17,4 @@ use Modules\Member\Http\Controllers\MemberController;
 Route::group([], function () {
     Route::resource('member', MemberController::class)->names('member');
 });
+

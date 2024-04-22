@@ -1,0 +1,45 @@
+version: 2.1
+
+jobs:
+  build-dev:
+    docker:
+      - image: cimg/php:8.2.18
+
+    steps:
+      - checkout  # 拉取代碼
+
+      # 安裝依賴
+      - run:
+          name: Copy environment variables
+          command: |
+            cp .env.example .env
+      - run:
+          name: Install php extensions
+          command: |
+            sudo pecl install xdebug
+            # sudo pecl install redis igbinary
+      - run:
+          name: Install composer packages
+          command: |
+            composer install
+      # 運行測試
+      - run:
+          name: Test
+          command: |
+            php artisan key:generate
+            php artisan test
+          environment:
+            XDEBUG_MODE: coverage
+
+      # 部署或其他操作
+      # - run:
+      #     name: Deploy
+      #     command: |
+      #       # 在這裡添加部署指令或其他操作
+
+# 定義工作流程
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-dev

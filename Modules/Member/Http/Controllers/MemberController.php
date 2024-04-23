@@ -23,13 +23,29 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::paginate(15);
-        return view('member::index',compact('members'));
+        $table['url'] = '/member_list';
+        $table['column'] = [
+            ['data' => 'id', 'name' => 'id'],
+            ['data' => 'name', 'name' => 'name'],
+            ['data' => 'player_number', 'name' => 'player_number'],
+            ['data' => 'date_of_birth', 'name' => 'date_of_birth'],
+            ['data' => 'type', 'name' => 'type'],
+            ['data' => 'note', 'name' => 'note'],
+            ['data' => 'detail_btn', 'name' => 'detail_btn'],
+        ];
+        $table['header'] = ['姓名','電話','球員編號','生日','類別','備註','編輯'];
+        return view('member::index',compact('table'));
     }
-    public function list()
+    public function list(Request $request)
     {
-        $this->memberRepo->all();
-        return view('member::index');
+        $member = $this->memberRepo->all();
+        return datatables()->collection($member)
+        ->editColumn('detail_btn', function ($data) {
+//            return "<a href='".route('stock.stock_info_index',$data->stock_id)."' target='_blank'>$data->stock_no</a>";
+            return "123";
+        })
+        ->rawColumns(['detail_btn'])
+        ->make(true);
     }
 
     /**

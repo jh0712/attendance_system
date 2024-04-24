@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Kh\Contracts\Stateable;
 use Modules\Kh\Traits\HistoryRelation;
 
-class Course extends Model implements Stateable
+class Course extends Model
 {
-    use SoftDeletes, HistoryRelation;
     protected $guarded = [
     ];
 

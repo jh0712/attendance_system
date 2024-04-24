@@ -16,4 +16,5 @@ use Modules\Course\Http\Controllers\CourseController;
 
 Route::group([], function () {
     Route::resource('course', CourseController::class)->names('course');
+    Route::get('course_list', 'CourseController@list')->name('course_list');
 });

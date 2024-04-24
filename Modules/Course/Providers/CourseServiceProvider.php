@@ -22,6 +22,7 @@ class CourseServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        $this->registerBindings();
     }
 
     /**
@@ -110,5 +111,11 @@ class CourseServiceProvider extends ServiceProvider
         }
 
         return $paths;
+    }
+    public function registerBindings()
+    {
+        foreach (config('course.bindings') as $key => $binding) {
+            $this->app->bind($key, $binding);
+        }
     }
 }

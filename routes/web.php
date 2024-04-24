@@ -13,17 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //
-////Route::get('/', function () {
-////    return view('welcome');
-////});
+Route::get('/', function () {
+    return view('attendance_system.index');
+});
 //
 //Route::get('/{url?}', function () {
 //    return view('attendance_system.index');
 //})->where(['url'=>'index|dashboard']);
 //
-////Route::get('/index', function () {
-////    return view('attendance_system.index');
-////});
+Route::get('/index', function () {
+    return view('attendance_system.index');
+});
 ////Route::get('/dashboard', function () {
 ////    return view('attendance_system.index');
 ////});

@@ -41,11 +41,10 @@ class MemberController extends Controller
         $member = $this->memberRepo->all();
         return datatables()->collection($member)
         ->editColumn('detail_btn', function ($data) {
-//            return "<a href='".route('stock.stock_info_index',$data->stock_id)."' target='_blank'>$data->stock_no</a>";
-            return "123";
+            return "<a href='".route('member.edit',$data->id)."' target='_blank' class='btn btn-sm btn-primary'>detail</a>";
         })
         ->rawColumns(['detail_btn'])
-        ->make(true);
+        ->make();
     }
 
     /**

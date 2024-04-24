@@ -18,8 +18,6 @@
                     <div class="state-information d-none d-sm-block">
                         <div class="state-graph">
                             <div id="header-chart-2"></div>
-{{--                            <div class="info">全部學員數量 {{$members->total()}}</div>--}}
-                            <div class="info">全部學員數量 </div>
                         </div>
                     </div>
                 </div>

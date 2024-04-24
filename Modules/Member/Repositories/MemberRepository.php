@@ -29,4 +29,5 @@ class MemberRepository extends Repository implements MemberContract
         $this->model = $model;
         parent::__construct($model);
     }
+
 }

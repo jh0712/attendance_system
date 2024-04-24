@@ -3,12 +3,16 @@
 namespace Modules\Member\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 use Modules\Member\Contracts\MemberContract;
 use Modules\Member\Entities\Member;
 use Modules\Member\Repositories\MemberRepository;
+use Yajra\DataTables\DataTableAbstract;
+use Yajra\DataTables\DataTables;
 
 class MemberController extends Controller
 {
@@ -21,7 +25,7 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $table['url'] = '/member_list';
         $table['column'] = [
@@ -36,7 +40,7 @@ class MemberController extends Controller
         $table['header'] = ['姓名','電話','球員編號','生日','類別','備註','編輯'];
         return view('member::index',compact('table'));
     }
-    public function list(Request $request)
+    public function list(Request $request): JsonResponse
     {
         $member = $this->memberRepo->all();
         return datatables()->collection($member)
@@ -50,9 +54,9 @@ class MemberController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        return view('member::create');
+        return view('member::action.create');
     }
 
     /**
@@ -60,23 +64,26 @@ class MemberController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //
+        $member = $this->memberRepo->add($request->all());
+        return redirect()->route('member.edit',$member->id);
     }
 
     /**
      * Show the specified resource.
      */
-    public function show($id)
+    public function show($id): View
     {
-        return view('member::show');
+        $member = $this->memberRepo->find($id);
+        return view('member::action.edit',compact('member'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($id): View
     {
-        return view('member::edit');
+        $member = $this->memberRepo->find($id);
+        return view('member::action.edit',compact('member'));
     }
 
     /**
@@ -84,7 +91,8 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        //
+        $member = $this->memberRepo->edit($id,$request->all());
+        return redirect()->route('member.edit',$member->id);
     }
 
     /**

@@ -23,7 +23,11 @@
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-xl-12 ">
+                <a href="{{route('member.create')}}" class="btn btn-primary waves-effect waves-light">Create</a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xl-12 ">
                 <div class="card m-b-20">

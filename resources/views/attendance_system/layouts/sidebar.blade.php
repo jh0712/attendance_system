@@ -72,12 +72,12 @@
                             <li>
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-clipboard-outline"></i><span> Forms <span class="badge badge-pill badge-success float-right">6</span> </span></a>
                                 <ul class="submenu">
-                                    <li><a href="form-elements">Form Elements</a></li>
-                                    <li><a href="form-validation">Form Validation</a></li>
-                                    <li><a href="form-advanced">Form Advanced</a></li>
-                                    <li><a href="form-editors">Form Editors</a></li>
-                                    <li><a href="form-uploads">Form File Upload</a></li>
-                                    <li><a href="form-xeditable">Form Xeditable</a></li>
+                                    <li><a href="../form-elements">Form Elements</a></li>
+                                    <li><a href="../form-validation">Form Validation</a></li>
+                                    <li><a href="../form-advanced">Form Advanced</a></li>
+                                    <li><a href="../form-editors">Form Editors</a></li>
+                                    <li><a href="../form-uploads">Form File Upload</a></li>
+                                    <li><a href="../form-xeditable">Form Xeditable</a></li>
 
                                 </ul>
                             </li>

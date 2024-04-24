@@ -28,6 +28,13 @@ Route::get('/index', function () {
 ////    return view('attendance_system.index');
 ////});
 if(env('APP_ENV') === 'local') {
+    // ui
+    Route::get('/ui-buttons', function () {
+        return view('demo.ui-buttons');
+    });
+    Route::get('/ui-grid', function () {
+        return view('demo.ui-grid');
+    });
     // form
     Route::get('/form-elements', function () {
         return view('demo.form-elements');

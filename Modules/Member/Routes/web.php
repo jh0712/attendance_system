@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Member\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,18 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//
-Route::get('/', function () {
-    return view('attendance_system.index');
+
+Route::group([], function () {
+    Route::resource('member', MemberController::class)->names('member');
+    Route::get('member_list', 'MemberController@list')->name('member_list');
 });
-//
-//Route::get('/{url?}', function () {
-//    return view('attendance_system.index');
-//})->where(['url'=>'index|dashboard']);
-//
-Route::get('/index', function () {
-    return view('attendance_system.index');
-});
-////Route::get('/dashboard', function () {
-////    return view('attendance_system.index');
-////});
+

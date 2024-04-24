@@ -22,10 +22,10 @@
                             </li>
 
                             <li>
-                                <a href="/stock" class="waves-effect">
+                                <a href="{{route('course.index')}}" class="waves-effect">
                                     <i class="mdi mdi-buffer"></i>
                                     <span class="badge badge-primary badge-pill float-right"></span>
-                                    <span> Stock </span>
+                                    <span> 課程清單 </span>
                                 </a>
                             </li>
                             <li>

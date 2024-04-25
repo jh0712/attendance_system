@@ -13,28 +13,81 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //
-Route::get('/', function () {
-    return view('attendance_system.index');
-});
+////Route::get('/', function () {
+////    return view('welcome');
+////});
 //
 //Route::get('/{url?}', function () {
 //    return view('attendance_system.index');
 //})->where(['url'=>'index|dashboard']);
 //
-Route::get('/index', function () {
-    return view('attendance_system.index');
-});
+////Route::get('/index', function () {
+////    return view('attendance_system.index');
+////});
 ////Route::get('/dashboard', function () {
 ////    return view('attendance_system.index');
 ////});
 if(env('APP_ENV') === 'local') {
-    // ui
+    // UI
     Route::get('/ui-buttons', function () {
         return view('demo.ui-buttons');
+    });
+    Route::get('/ui-alerts', function () {
+        return view('demo.ui-alerts');
+    });
+    Route::get('/ui-badge', function () {
+        return view('demo.ui-badge');
+    });
+    Route::get('/ui-cards', function () {
+        return view('demo.ui-cards');
+    });
+    Route::get('/ui-carousel', function () {
+        return view('demo.ui-carousel');
+    });
+    Route::get('/ui-dropdowns', function () {
+        return view('demo.ui-dropdowns');
     });
     Route::get('/ui-grid', function () {
         return view('demo.ui-grid');
     });
+    Route::get('/ui-images', function () {
+        return view('demo.ui-images');
+    });
+    Route::get('/ui-lightbox', function () {
+        return view('demo.ui-lightbox');
+    });
+    Route::get('/ui-modals', function () {
+        return view('demo.ui-modals');
+    });
+    Route::get('/ui-pagination', function () {
+        return view('demo.ui-pagination');
+    });
+    Route::get('/ui-popover-tooltips', function () {
+        return view('demo.ui-popover-tooltips');
+    });
+    Route::get('/ui-rangeslider', function () {
+        return view('demo.rangeslider');
+    });
+    Route::get('/ui-session-timeout', function () {
+        return view('demo.session-timeout');
+    });
+    Route::get('/ui-progressbars', function () {
+        return view('demo.ui-progressbars');
+    });
+    Route::get('/ui-sweet-alert', function () {
+        return view('demo.ui-sweet-alert');
+    });
+    Route::get('/ui-tabs-accordions', function () {
+        return view('demo.ui-tabs-accordions');
+    });
+    Route::get('/ui-typography', function () {
+        return view('demo.ui-typography');
+    });
+    Route::get('/ui-video', function () {
+        return view('demo.ui-video');
+    });
+
+
     // form
     Route::get('/form-elements', function () {
         return view('demo.form-elements');

@@ -39,7 +39,8 @@ class CourseController extends Controller
         $course = $this->courseRepo->all();
         return datatables()->collection($course)
             ->editColumn('detail_btn', function ($data) {
-                return "<a href='".route('course.edit',$data->id)."' target='_blank' class='btn btn-sm btn-primary'>detail</a>";
+                return "<a href='".route('course.edit',$data->id)."' target='_blank' class='btn btn-sm btn-primary'>edit</a> " .
+                    "<a href='".route('course_detail.index',$data->id)."' target='_blank' class='btn btn-sm btn-primary'>detail</a>";
             })
             ->rawColumns(['detail_btn'])
             ->make();

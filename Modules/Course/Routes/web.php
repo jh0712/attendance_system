@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Course\Http\Controllers\CourseController;
-
+use Modules\Course\Http\Controllers\CourseDetailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,4 +17,6 @@ use Modules\Course\Http\Controllers\CourseController;
 Route::group([], function () {
     Route::resource('course', CourseController::class)->names('course');
     Route::get('course_list', 'CourseController@list')->name('course_list');
+    Route::resource('course/{course_id}/course_detail', CourseDetailController::class)->names('course_detail');
+    Route::get('course/{course_id}/course_detail_list', 'CourseDetailController@list')->name('course_detail_list');
 });

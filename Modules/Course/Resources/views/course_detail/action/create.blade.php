@@ -68,7 +68,7 @@
                             </div>
                             <div class="form-group row text-center"> <!-- 將按鈕置於中間 -->
                                 <div class="col-sm-12">
-                                    <a href="{{redirect()->back()->getTargetUrl()}}" class="btn btn-primary waves-effect waves-light">Back</a>
+                                    <a href="{{route('course_detail.index',$course_id)}}" class="btn btn-primary waves-effect waves-light">Back</a>
                                     <button type="submit"  class="mt-0 btn btn-primary waves-effect waves-light">Create</button>
                                 </div>
                             </div>

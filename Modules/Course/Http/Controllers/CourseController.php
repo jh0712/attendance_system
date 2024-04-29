@@ -41,7 +41,7 @@ class CourseController extends Controller
             ->editColumn('detail_btn', function ($data) {
                 return "<a href='".route('course.edit',$data->id)."' target='_blank' class='btn btn-sm btn-primary'>edit</a> " .
                     "<a href='".route('course_detail.index',$data->id)."' target='_blank' class='btn btn-sm btn-primary'>detail</a> ".
-                    "<a href='".route('course_member.index',$data->id)."' target='_blank' class='btn btn-sm btn-primary'>member list</a>";;
+                    "<a href='".route('course_member.index',$data->id)."' target='_blank' class='btn btn-sm btn-primary'>member list</a> ";
             })
             ->rawColumns(['detail_btn'])
             ->make();

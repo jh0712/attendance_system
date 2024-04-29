@@ -25,6 +25,11 @@
         </div>
         <div class="row">
             <div class="col-xl-12 ">
+                <a href="{{route('course_member.create',$course_id)}}" class="btn btn-primary waves-effect waves-light">Create</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 ">
                 <div class="card m-b-20">
                     <div class="card-body">
                         <input type="hidden" name="_token" value=" '.csrf_token().' ">

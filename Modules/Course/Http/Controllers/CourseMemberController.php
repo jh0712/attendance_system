@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Modules\Course\Contracts\CourseContract;
 use Modules\Course\Contracts\CourseMemberMappingContract;
+use Modules\Member\Contracts\MemberContract;
 
 class CourseMemberController extends Controller
 {
     public function __construct(
         public CourseMemberMappingContract $courseMemberRepo,
-        public CourseContract $courseRepo
+        public CourseContract $courseRepo,
+        public MemberContract $memberRepo
     )
     {
     }
@@ -64,7 +66,15 @@ class CourseMemberController extends Controller
      */
     public function create($course_id): View
     {
-        return view('course::course_detail.action.create', compact('course_id'));
+        $course = $this->courseRepo->getmodel()
+            ->where('id', $course_id)
+            ->with('members')
+            ->first();
+        // exist
+        $members = $this->memberRepo->all()->sort();
+        $already_assign = $course->members->pluck('id')->toArray();
+        $members = $members->whereNotIn('id',$already_assign);
+        return view('course::course_member.action.create', compact('course_id','members'));
     }
 
     /**

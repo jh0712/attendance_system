@@ -29,7 +29,7 @@ interface CrudContract
      * @return boolean|Illuminate\Database\Eloquent\Model
      */
     public function edit($id, array $attributes = [], $forceFill = false);
-
+    public function insert(array $attributes = []);
     /**
      * Delete a specific record
      * @param unknown $ids

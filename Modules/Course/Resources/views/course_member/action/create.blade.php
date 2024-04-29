@@ -9,10 +9,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Course Create</h4>
+                    <h4 class="page-title">member mapping</h4>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active">
-                            創建課程
+                            加入課程名單
                         </li>
                     </ol>
                     <div class="state-information d-none d-sm-block">
@@ -32,7 +32,7 @@
             <div class="col-xl-12 ">
                 <div class="card m-b-20">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('course.store') }}">
+                        <form method="POST" action="{{ route('course_member.store',$course_id) }}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <table id="level-table" class="table">
                                 <thead>
@@ -53,7 +53,7 @@
                                         <td>{{$member->date_of_birth}}</td>
 {{--                                        mapping_type are dropdown from coursemember.php--}}
                                         <td>
-                                            <select class="form-control" name="type">
+                                            <select class="form-control" name="type[{{$member->id}}]">
                                                 <option>Select</option>
                                                 @php
                                                     $type = \Modules\Course\Enums\CourseMember\CourseMember::values();
@@ -71,6 +71,12 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            <div class="form-group row text-center"> <!-- 將按鈕置於中間 -->
+                                <div class="col-sm-12">
+                                    <a href="{{route('course_member.index',$course_id)}}" class="btn btn-primary waves-effect waves-light">Back</a>
+                                    <button type="submit"  class="mt-0 btn btn-primary waves-effect waves-light">Add</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

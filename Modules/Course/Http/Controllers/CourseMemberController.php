@@ -40,24 +40,24 @@ class CourseMemberController extends Controller
 
     public function list(Request $request, $course_id): JsonResponse
     {
-        $course = $this->courseRepo->getmodel()
-            ->where('id', $course_id)
-            ->with('members')
-            ->first();
-        return datatables()->collection($course->members)
+        $courseMmember = $this->courseMemberRepo->getmodel()
+            ->where('course_id', $course_id)
+            ->with('member')
+            ->get();
+        return datatables()->collection($courseMmember)
             ->editColumn('detail_btn', function ($data) {
                 return "<a href='" . route('course_member.edit', [$data->course_id, $data->id]) . "' target='_blank' class='btn btn-sm btn-primary'>edit</a>";
             })
-            ->addColumn('name',function ($member){
-                return $member->name;
+            ->addColumn('name',function ($data){
+                return "<a href='" . route('member.edit', [$data->member->id]) . "' target='_blank' class='btn btn-sm btn-primary'>{$data->member->name}</a>";
             })
-            ->addColumn('date_of_birth',function ($member){
-                return $member->date_of_birth;
+            ->addColumn('date_of_birth',function ($data){
+                return $data->member->date_of_birth;
             })
-            ->addColumn('type',function ($member){
-                return $member->type;
+            ->addColumn('type',function ($data){
+                return $data->type;
             })
-            ->rawColumns(['detail_btn'])
+            ->rawColumns(['detail_btn','name'])
             ->make();
     }
 
@@ -72,7 +72,7 @@ class CourseMemberController extends Controller
             ->first();
         // exist
         $members = $this->memberRepo->all()->sort();
-        $already_assign = $course->members->pluck('id')->toArray();
+        $already_assign = $course->members->pluck('member_id')->toArray();
         $members = $members->whereNotIn('id',$already_assign);
         return view('course::course_member.action.create', compact('course_id','members'));
     }
@@ -82,11 +82,21 @@ class CourseMemberController extends Controller
      */
     public function store(Request $request, $course_id): RedirectResponse
     {
+
         // mapping function
-        $attr = $request->all();
-        $attr['course_id'] = $course_id;
-        $courseDetail = $this->courseMemberRepo->add($attr);
-        return redirect()->route('course_detail.edit', [$course_id, $courseDetail->id]);
+        $memberIds = $request->input('members');
+        $type = $request->input('type');
+        $attr = [];
+        foreach ($memberIds as $id){
+            $attr[] = [
+                'course_id' => $course_id,
+                'member_id' => $id,
+                'type' =>$type[$id]
+            ];
+        }
+
+        $this->courseMemberRepo->insert($attr);
+        return redirect()->route('course_member.index', [$course_id]);
     }
 
     /**

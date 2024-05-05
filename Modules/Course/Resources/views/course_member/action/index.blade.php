@@ -25,7 +25,8 @@
         </div>
         <div class="row">
             <div class="col-xl-12 ">
-                <a href="{{route('course_member.create',$course_id)}}" class="btn btn-primary waves-effect waves-light">Create</a>
+                <a href="{{route('course.index')}}" class="btn btn-primary waves-effect waves-light">Back</a>
+                <a href="{{route('course_member.create',$course_id)}}" class="btn btn-primary waves-effect waves-light">Add</a>
             </div>
         </div>
         <div class="row">

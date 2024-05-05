@@ -40,11 +40,18 @@ class CourseMemberController extends Controller
 
     public function list(Request $request, $course_id): JsonResponse
     {
-        $courseMmember = $this->courseMemberRepo->getmodel()
+        $courseMember = $this->courseMemberRepo->getmodel()
             ->where('course_id', $course_id)
             ->with('member')
             ->get();
-        return datatables()->collection($courseMmember)
+        $courseMember->map(function ($item, $key) {
+            $item->serial_number = $key + 1;
+            return $item;
+        });
+        return datatables()->collection($courseMember)
+            ->editColumn('id', function ($data) {
+                return $data->serial_number;
+            })
             ->editColumn('detail_btn', function ($data) {
                 return "<a href='" . route('course_member.edit', [$data->course_id, $data->id]) . "' target='_blank' class='btn btn-sm btn-primary'>edit</a>";
             })
@@ -102,28 +109,28 @@ class CourseMemberController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show($course_id, $detail_id): View
+    public function show($course_id, $course_member_id): View
     {
-        $courseDetail = $this->courseMemberRepo->find($detail_id);
-        return view('course::course_detail.action.edit', compact('courseDetail'));
+        $courseMember = $this->courseMemberRepo->find($course_member_id);
+        return view('course::course_member.action.edit', compact('courseMember'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($course_id, $detail_id): View
+    public function edit($course_id, $course_member_id): View
     {
-        $courseDetail = $this->courseMemberRepo->find($detail_id);
-        return view('course::course_detail.action.edit', compact('courseDetail'));
+        $courseMember = $this->courseMemberRepo->find($course_member_id);
+        return view('course::course_member.action.edit', compact('courseMember'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $course_id, $detail_id): RedirectResponse
+    public function update(Request $request, $course_id, $course_member_id): RedirectResponse
     {
-        $courseDetail = $this->courseMemberRepo->edit($detail_id, $request->all());
-        return redirect()->route('course_detail.edit', [$course_id, $courseDetail->id]);
+        $courseMember = $this->courseMemberRepo->edit($course_member_id, $request->all());
+        return redirect()->route('course_member.edit', [$course_id, $courseMember->id]);
     }
 
     /**

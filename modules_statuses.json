@@ -7,5 +7,6 @@
     "QuiryBuilder": true,
     "Member": true,
     "Course": true,
-    "Permission": true
+    "Permission": true,
+    "User": true
 }

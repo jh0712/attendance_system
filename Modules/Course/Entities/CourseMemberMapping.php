@@ -3,29 +3,25 @@
 namespace Modules\Course\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Kh\Contracts\Stateable;
-use Modules\Kh\Traits\HistoryRelation;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Member\Entities\Member;
 
-class Course extends Model
+class CourseMemberMapping extends Model
 {
-    protected $guarded = [
-    ];
+    protected $guarded = [];
 
     /**
      * This model's relation to user status histories.
      *
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function members(): HasMany
+    public function member(): BelongsTo
     {
-        return $this->hasMany(CourseMemberMapping::class, 'course_id');
+        return $this->belongsTo(Member::class, 'member_id');
     }
-
-    public function courseDetails(): HasMany
+    public function course(): BelongsTo
     {
-        return $this->hasMany(CourseDetail::class, 'course_id');
+        return $this->belongsTo(Course::class, 'course_id');
     }
 
     /**

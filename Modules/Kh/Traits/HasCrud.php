@@ -38,6 +38,12 @@ trait HasCrud
         return false;
     }
 
+    public function insert(array $attributes = [])
+    {
+        $model = $this->model->newInstance();
+        return $model->insert($attributes);
+    }
+
     /**
      * Edit a specific record
      * @param unknown $id

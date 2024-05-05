@@ -4,7 +4,9 @@ namespace Modules\Member\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\Member\Database\factories\MemberFactory;
+use Modules\Course\Entities\CourseMemberMapping;
 
 class Member extends Model
 {
@@ -13,8 +15,12 @@ class Member extends Model
     /**
      * This model's relation to user status histories.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
+    public function course(): HasMany
+    {
+        return $this->hasMany(CourseMemberMapping::class, 'member_id');
+    }
 
     /**
      * Get the state id

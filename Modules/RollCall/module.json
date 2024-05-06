@@ -1,0 +1,11 @@
+{
+    "name": "RollCall",
+    "alias": "rollcall",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\RollCall\\Providers\\RollCallServiceProvider"
+    ],
+    "files": []
+}

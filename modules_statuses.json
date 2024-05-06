@@ -8,5 +8,6 @@
     "Member": true,
     "Course": true,
     "Permission": true,
-    "User": true
+    "User": true,
+    "RollCall": true
 }

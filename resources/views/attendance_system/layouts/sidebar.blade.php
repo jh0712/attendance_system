@@ -29,6 +29,13 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{route('roll_call.index')}}" class="waves-effect">
+                                    <i class="mdi mdi-buffer"></i>
+                                    <span class="badge badge-primary badge-pill float-right"></span>
+                                    <span> 點名 </span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="calendar" class="waves-effect"><i class="mdi mdi-calendar-check"></i><span> Calendar </span></a>
                             </li>
 

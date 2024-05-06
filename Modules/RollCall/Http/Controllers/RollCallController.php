@@ -6,23 +6,39 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Course\Contracts\CourseDetailContract;
+use Modules\Member\Contracts\MemberContract;
+use Modules\Member\Entities\Member;
+use Modules\User\Entities\User;
 
 class RollCallController extends Controller
 {
+    public function __construct(
+        private readonly CourseDetailContract $courseDetailRepo,
+        private MemberContract                $memberRepo,
+    )
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('rollcall::index');
+        return view('course::index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($course_id,$course_detail_id)
     {
-        return view('rollcall::create');
+        $courseDetail = $this->courseDetailRepo->find($course_detail_id,['course.members']);
+        $course = $courseDetail->course;
+        $members = $course->members->pluck('member_id');
+        $members = $this->memberRepo->find($members->toArray());
+
+        return view('rollcall::action.create',compact('course_id','courseDetail','members','course'));
     }
 
     /**
@@ -44,7 +60,7 @@ class RollCallController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($course_detail_id)
     {
         return view('rollcall::edit');
     }

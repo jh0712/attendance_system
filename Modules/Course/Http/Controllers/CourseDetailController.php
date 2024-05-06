@@ -40,7 +40,8 @@ class CourseDetailController extends Controller
             ->where('course_id', $course_id)->get();
         return datatables()->collection($courseDetail)
             ->editColumn('detail_btn', function ($data) {
-                return "<a href='" . route('course_detail.edit', [$data->course_id, $data->id]) . "' target='_blank' class='btn btn-sm btn-primary'>edit</a>";
+                return "<a href='" . route('course_detail.edit', [$data->course_id, $data->id]) . "' target='_blank' class='btn btn-sm btn-primary'>edit</a>".
+                " <a href='" . route('roll_call.create', [$data->course_id,$data->id]) . "' target='_blank' class='btn btn-sm btn-primary'>點名</a>";
             })
             ->rawColumns(['detail_btn'])
             ->make();

@@ -15,5 +15,11 @@ use Modules\RollCall\Http\Controllers\RollCallController;
 */
 
 Route::group([], function () {
-    Route::resource('rollcall', RollCallController::class)->names('rollcall');
+    // Route::resource('roll_call', RollCallController::class)->names('roll_call');
+    // index
+    Route::get('roll_call', [RollCallController::class, 'index'])->name('roll_call.index');
+    // create
+    Route::get('roll_call/create/{course_id}/{course_detail_id}', [RollCallController::class, 'create'])->name('roll_call.create');
+    // store
+    Route::post('roll_call/store', [RollCallController::class, 'store'])->name('roll_call.store');
 });

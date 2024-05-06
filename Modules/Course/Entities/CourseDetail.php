@@ -3,20 +3,22 @@
 namespace Modules\Course\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Kh\Contracts\Stateable;
 use Modules\Kh\Traits\HistoryRelation;
+use Modules\Course\Entities\Course;
 
 class CourseDetail extends Model
 {
     protected $guarded= [
     ];
 
-    /**
-     * This model's relation to user status histories.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+    // course
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Course::class, 'course_id');
+    }
 
     /**
      * Get the state id

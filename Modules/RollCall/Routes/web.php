@@ -21,5 +21,9 @@ Route::group([], function () {
     // create
     Route::get('roll_call/create/{course_id}/{course_detail_id}', [RollCallController::class, 'create'])->name('roll_call.create');
     // store
-    Route::post('roll_call/store', [RollCallController::class, 'store'])->name('roll_call.store');
+    Route::post('roll_call/{course_id}/{course_detail_id}', [RollCallController::class, 'store'])->name('roll_call.store');
+    // edit
+    Route::get('roll_call/edit/{course_id}/{course_detail_id}', [RollCallController::class, 'edit'])->name('roll_call.edit');
+    // update
+    Route::put('roll_call/{course_id}/{course_detail_id}', [RollCallController::class, 'update'])->name('roll_call.update');
 });

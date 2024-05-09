@@ -3,21 +3,18 @@
 namespace Modules\RollCall\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Kh\Contracts\Stateable;
-use Modules\Kh\Traits\HistoryRelation;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Member\Entities\Member;
 
-class RollCall extends Model implements Stateable
+class RollCall extends Model
 {
-    use SoftDeletes, HistoryRelation;
     protected $fillable = [
     ];
 
-    /**
-     * This model's relation to user status histories.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+    public function member(): BelongsTo
+    {
+        return $this->belongsTo(Member::class);
+    }
 
     /**
      * Get the state id

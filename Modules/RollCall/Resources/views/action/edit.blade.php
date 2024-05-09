@@ -39,10 +39,11 @@
                                 <h4>課程內容：{{$courseDetail->name}}</h4>
                             </div>
                             <div class="col-4">
-                                <h4>總人數：{{$members->count()}}</h4>
+                                <h4>總人數：{{$rollCalls->count()}}</h4>
                             </div>
                         </div>
-                        <form method="POST" action="{{ route('roll_call.store',[$course_id,$courseDetail->id]) }}">
+                        <form method="POST" action="{{ route('roll_call.update',[$course_id,$courseDetail->id]) }}">
+                            @method('PUT')
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <table id="level-table" class="table">
                                 <thead>
@@ -54,12 +55,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($members as $member)
+                                @foreach($rollCalls as $rollCall)
                                     <tr>
-                                        <td><input type="checkbox" name="arrive_member_ids[]" value="{{$member->id}}"></td>
-                                        <td>{{$member->id}}</td>
-                                        <td>{{$member->name}}</td>
-                                        <td>{{$member->date_of_birth}}</td>
+                                        <td>
+                                            @if($rollCall->arrive_status == true)
+                                                <input type="checkbox" name="roll_call_ids[]" value="{{$rollCall->id}}" checked>
+                                            @else
+                                                <input type="checkbox" name="roll_call_ids[]" value="{{$rollCall->id}}">
+                                            @endif
+                                        </td>
+                                        <td>{{$rollCall->member->id}}</td>
+                                        <td>{{$rollCall->member->name}}</td>
+                                        <td>{{$rollCall->member->date_of_birth}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -67,7 +74,7 @@
                             <div class="form-group row text-center"> <!-- 將按鈕置於中間 -->
                                 <div class="col-sm-12">
                                     <a href="{{route('course_detail.index',$course_id)}}" class="btn btn-primary waves-effect waves-light">Back</a>
-                                    <button type="submit"  class="mt-0 btn btn-primary waves-effect waves-light">Add</button>
+                                    <button type="submit"  class="mt-0 btn btn-primary waves-effect waves-light">update</button>
                                 </div>
                             </div>
                         </form>

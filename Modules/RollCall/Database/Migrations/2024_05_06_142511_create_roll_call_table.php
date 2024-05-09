@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roll_call', function (Blueprint $table) {
+        Schema::create('roll_calls', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('course_detail_id');
-            $table->json('coach_list');
+            $table->json('coach_list')->nullable();
             $table->unsignedBigInteger('member_id');
             $table->boolean('arrive_status')->default(0);
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roll_call');
+        Schema::dropIfExists('roll_calls');
     }
 };

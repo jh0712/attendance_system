@@ -22,6 +22,7 @@ class RollCallServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        $this->registerBindings();
     }
 
     /**
@@ -110,5 +111,11 @@ class RollCallServiceProvider extends ServiceProvider
         }
 
         return $paths;
+    }
+    public function registerBindings()
+    {
+        foreach (config('rollcall.bindings') as $key => $binding) {
+            $this->app->bind($key, $binding);
+        }
     }
 }
